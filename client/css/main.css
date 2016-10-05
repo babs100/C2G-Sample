@@ -1,0 +1,160 @@
+/* CSS declarations go here */
+
+body {
+    font-family: sans-serif;
+    background-color: #315481;
+    background-image: url('/img/bg.png');
+    background-size: cover;
+    background-attachment: fixed;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    padding: 0;
+    margin: 0;
+
+    font-size: 14px;
+}
+
+.page-header
+{
+    font-weight: 400;
+    padding: 2px 0px 5px 10px;
+    font-size: 1.3em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.center_content
+{
+    text-align: center;
+    align-content: center;
+}
+.login_panel
+{
+    width: 30%;
+    margin: 100px auto 0;
+    box-shadow: 2px 1px 2px #000000;
+}
+
+.feature_box
+{
+    margin-top: 100px;
+}
+
+.center_box
+{
+    margin:0 auto 0;
+}
+
+.head
+{
+    background-color: #2e5cad;
+    color: #ffffff;
+    margin-top: 50px;
+    font-weight: bold;
+    padding: 10px 0 10px 20px;
+}
+
+.head2
+{
+    background-color: rgba(10,10,10,.1);
+    color: #ffffff;
+    margin-top: 50px;
+    font-weight: bold;
+    padding: 10px 0 10px 20px;
+}
+.shadow_box
+{
+    box-shadow: 2px 1px 2px #000000;
+}
+
+.box_well
+{
+    width: 45px;
+    margin: 50px auto 0;
+    box-shadow: 2px 1px 2px #000000;
+}
+
+.panel_container
+{
+    width:60%;
+    margin: 20px auto 0;
+}
+
+.borderless_table
+{
+    border: none;
+    font-size: 1.2em ;
+    font-weight: bold;
+}
+
+.status_box
+{
+    width:50% ;
+    color: #ffffff;
+    background: rgba(10,10,10,.1);
+    margin:100px auto 0;
+    border: 2px solid rgba(50,50,50,.4);
+    border-radius: 1%;
+}
+
+.status_box table{
+
+}
+
+.ds-widget
+{
+    width: 120px;
+    height: 120px;
+    margin: auto;
+    border: 3px solid #45438e;
+    border-radius: 50%;
+    padding: 5px;
+    text-align: center;
+    align-content: center;
+    color: #345e8e;
+    font-size: 1.2em;
+
+}
+
+.ds-widget .ds-icon {
+
+    font-size: 1.2em;
+
+}
+.my_container
+{
+    background: #ffffff;
+}
+.content
+{
+
+    margin-top: 60px;
+    min-height: 600px;
+}
+.dash_container
+{
+    padding: 5px;
+}
+
+.table_container
+{
+    padding: 5px;
+}
+
+a:hover, a:active, a:visited
+{
+    text-decoration: none;
+    text-underline: none;
+}
+
+
+.footer
+{
+    color: #ffffff;
+    background: #000000;
+    font-size:1.1em ;
+}
