@@ -20,10 +20,14 @@ export default class Profile extends Component{
 
         let errors = [] ;
 
-        var profileId = Session.get('profileId') ;
+        //var profileId = Session.get('profileId') ;
+        const profileId = window.sessionStorage.getItem('profileId') ;
+        console.log('profile id = ' + profileId) ;
         const states = States.find({}) ;
         //var profileId  = this.props.params.profileId ;
-        const profile = Profiles.findOne({_id:profileId}) ;
+        var profile = Profiles.findOne({_id: profileId}) ;
+        
+        console.log('Profile: \n' + profile) ;
         this.state = {
             profile: profile,
             states : states ,

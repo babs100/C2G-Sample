@@ -20,7 +20,7 @@ export const renderRoutes = () => (
             <Route  path="/profile" component={Profile} />
             <Route  path="/application" component={ApplicationForm} onEnter={ApplicationForm.guard}/>
             <Route  path="/login" component={Login} />
-            <Route  path="/status" component={AppStatus} />
+            <Route  path="/status" component={AppStatus} onEnter={AppStatus.guard} />
             <Route  path="/review" component={ReviewHome} onEnter={ReviewHome.guard} />
             <Route  path="/process" component={ProcessHome} onEnter={ProcessHome.guard} />
             <Route  path="/map" component={GoogleMap} />

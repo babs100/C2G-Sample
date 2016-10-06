@@ -48,19 +48,21 @@ export default class Home extends Component{
         if(application && application.completed === true)
         {
             // if application already exist and completed for this account then proceed to application status
-            Session.set('profileId', profile._id) ;
+            window.sessionStorage.setItem('profileId', profile._id) ;
             this.props.history.push('/status') ;
         }
         else if(profile && profile.completed === true)
         {
             // if profile already and completed but no application then redirect to application
-            Session.set('profileId', profile._id) ;
+            //Session.set('profileId', profile._id) ;
+            window.sessionStorage.setItem('profileId', profile._id) ;
             this.props.history.push('/application') ;
         }
         else if(profile && profile.completed === false )
         {
             // if profile exist but not completed but no application then redirect to application
-            Session.set('profileId', profile._id) ;
+            //Session.set('profileId', profile._id) ;
+            window.sessionStorage.setItem('profileId', profile._id) ;
             this.props.history.push('/profile') ;
         }    
         else {
@@ -78,7 +80,8 @@ export default class Home extends Component{
 
                 }
             );
-            Session.set('profileId', profileId) ;
+            
+            window.sessionStorage.setItem('profileId', profileId) ;
             this.props.history.push('/profile') ;
         }
         

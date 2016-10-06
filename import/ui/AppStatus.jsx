@@ -9,15 +9,36 @@ export default class Application extends Component{
     constructor(props)
     {
         super(props) ;
-        const profileId = Session.get('profileId');
+        //const profileId = Session.get('profileId');
+        const profileId = window.sessionStorage.getItem('profileId') ;
         var application = Applications.findOne({profileId: profileId}) ;
         var profile = Profiles.findOne(profileId) ;
+        var profile ;
         
         this.state = {
             application: application,
             profile: profile
         }
     }
+
+    static guard(nextState, replace)
+    {
+        //const profileId = Session.get('profileId') ;
+        const profileId = window.sessionStorage.getItem('profileId') ;
+        const application = Applications.findOne({profileId:profileId}) ;
+
+        console.log('called in guard : \n'+ profileId + ' \n' + application) ;
+        
+        if(!application )
+        {
+            replace({
+                pathname: '/',
+                state: { nextPathname: nextState.location.pathname }
+            })
+        }
+
+    }
+
 
     handleDateChange(val)
     {

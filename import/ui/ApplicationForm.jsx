@@ -12,7 +12,8 @@ export default class ApplicationForm extends Component{
         super(props) ;
 
         var errors = [] ;
-        var profileId = Session.get('profileId') ;
+        //var profileId = Session.get('profileId') ;
+        const profileId = window.sessionStorage.getItem('profileId') ;
         const states = States.find({}) ;
         this.state = {
             profileId : profileId,
@@ -30,7 +31,8 @@ export default class ApplicationForm extends Component{
 
     static guard(nextState, replace)
     {
-        const profileId = Session.get('profileId') ;
+        //const profileId = Session.get('profileId') ;
+        const profileId = window.sessionStorage.getItem('profileId') ;
         const profile = Profiles.findOne(profileId) ;
 
         //console.log('profile Id  = ' + profileId) ;
@@ -177,12 +179,15 @@ export default class ApplicationForm extends Component{
         var profileId = Session.get('profileId') ;
         //console.log('mode = ' + mode ) ;
         //Profiles.update(profileId, { $set : {state: ngstate, address: address, phone:phonenumber}}) ;
+        var profile = Profiles.findOne(profileId);
+        var email = profile.email ;
 
         const application_id = Applications.insert({
                 profileId : profileId,
                 type : type,
                 score: score,
                 state: ngstate,
+                email:email,
                 mode : mode,
                 address : address,
                 phone:phonenumber,
@@ -251,6 +256,11 @@ export default class ApplicationForm extends Component{
                                             </select>
 
                                         </div>
+                                        <div className="form-group">
+                                            <label  className="control-label">Phone-Number: * </label>
+                                            <input type="text" placeholder="080812345678" className="form-control" rows="3" id="phone" name="phone" ref="phone"  tabIndex="4" />
+
+                                        </div>
 
                                         
 
@@ -272,11 +282,7 @@ export default class ApplicationForm extends Component{
                                              <textarea className="form-control" rows="3" id="address" name="address" ref="address"  tabIndex="5" />
 
                                          </div>
-                                         <div className="form-group">
-                                             <label  className="control-label">Phone-Number: * </label>
-                                             <input type="text" placeholder="080812345678" className="form-control" rows="3" id="phone" name="phone" ref="phone"  tabIndex="6" />
 
-                                         </div>
                                          
 
                                      </div>
