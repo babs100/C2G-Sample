@@ -10,7 +10,7 @@ import AppStatus from '../import/ui/AppStatus.jsx' ;
 import Login from '../import/ui/Login.jsx' ;
 import ReviewHome from '../import/ui/ReviewHome.jsx' ;
 import ProcessHome from '../import/ui/ProcessHome.jsx' ;
-import GoogleMap from '../import/ui/GoogleMap.jsx' ;
+import ApplicantsMap from '../import/ui/ApplicantsMap.jsx' ;
 
 export const renderRoutes = () => (
 
@@ -23,7 +23,7 @@ export const renderRoutes = () => (
             <Route  path="/status" component={AppStatus} onEnter={AppStatus.guard} />
             <Route  path="/review" component={ReviewHome} onEnter={ReviewHome.guard} />
             <Route  path="/process" component={ProcessHome} onEnter={ProcessHome.guard} />
-            <Route  path="/map" component={GoogleMap} />
+            <Route  path="/map" component={ApplicantsMap} />
             <Route  path="*" component={NotFound} />
         </Route>
     </Router>

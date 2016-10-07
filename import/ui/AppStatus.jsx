@@ -27,7 +27,7 @@ export default class Application extends Component{
         const profileId = window.sessionStorage.getItem('profileId') ;
         const application = Applications.findOne({profileId:profileId}) ;
 
-        console.log('called in guard : \n'+ profileId + ' \n' + application) ;
+        //console.log('called in guard : \n'+ profileId + ' \n' + application) ;
         
         if(!application )
         {

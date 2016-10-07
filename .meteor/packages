@@ -34,3 +34,5 @@ reactive-dict
 momentjs:moment
 cfs:filesystem
 tomi:upload-server
+dburles:google-maps
+mdg:geolocation
