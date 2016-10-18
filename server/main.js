@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import {Accounts} from 'meteor/accounts-base' ;
 import  {States}  from '../import/collections/state.js' ;
+import  {Applications}  from '../import/collections/application.js' ;
 
 Meteor.startup(() => {
   // code to run on server at startup
@@ -68,6 +69,6 @@ Meteor.startup(() => {
         });
         
     }
-
+    Meteor.publish('applications', ()=> Applications.find());
 
 });

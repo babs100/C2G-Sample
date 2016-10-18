@@ -1,28 +1,20 @@
 import React, {Component, PropTypes} from 'react' ;
 import {Meteor} from 'meteor/meteor' ;
 import {createContainer} from 'meteor/react-meteor-data' ;
-import {Applications} from '../collections/application.js' ;
-import Apps from './Apps.jsx' ;
-import {Profiles} from '../collections/profile.js' ;
 
-import {Modal, Nav, Grid, Glyphicon, NavItem, Table, SplitButton, MenuItem, Button} from 'react-bootstrap' ;
+
 
 
  export default class GoogleMap extends Component{
 
-        constructor(props)
-        {
-                super(props) ;
-
-                
-        }
+       
 
         componentDidMount()
         {
             GoogleMaps.create(
                 {
                     name : this.props.name ,
-                    element : React.findDOMNode(this) ,
+                    element : document.getElementById('map-container') ,
                     options: this.props.options,
                 }
             );
@@ -45,7 +37,7 @@ import {Modal, Nav, Grid, Glyphicon, NavItem, Table, SplitButton, MenuItem, Butt
 
      render()
      {
-         return(<div clasName="map-container"></div>) ;
+         return(<div id="map-container" className="map-container"></div>) ;
      }
 
         

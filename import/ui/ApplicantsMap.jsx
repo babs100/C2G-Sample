@@ -2,30 +2,28 @@ import React, {Component, PropTypes} from 'react' ;
 import {Meteor} from 'meteor/meteor' ;
 import {createContainer} from 'meteor/react-meteor-data' ;
 import {Applications} from '../collections/application.js' ;
-import GoogleMap from './GoogleMap.jsx' ;
-import {Profiles} from '../collections/profile.js' ;
+import {Gmaps, Marker, InfoWindow,Circle} from 'react-gmaps' ;
+import Loading from './Loading.jsx' ;
 
 
-
- export default class ApplicantsMap extends Component{
-
+ class ApplicantsMap extends Component{
         constructor(props)
         {
-                super(props) ;
-                this.state = {
-                    loaded : GoogleMaps.loaded() ,
-                    mapOptions : GoogleMaps.loaded() && this._mapOptions,
-                    currentUser: Meteor.user(),
-                }
+            super(props) ;
 
 
-                
+            this.onMapCreated = this.onMapCreated.bind(this) ;
+            //console.log('found 1 = ' + first) ;
+            this.state = 
+            {
+                currentUser: Meteor.user(),
+
+            }
+            
+            
         }
 
-        componentDidMount()
-        {
-            GoogleMaps.load() ;
-        }
+
 
      doLogout(e)
      {
@@ -49,22 +47,54 @@ import {Profiles} from '../collections/profile.js' ;
      }
 
 
-     _mapOptions()
+
+        onMapCreated()
         {
-            return {
-                center : new google.maps.LatLng(-37.8136, 144.9631),
-                zoom : 8,
+            /*
+            var  app = Applications.findOne({}) ;
+            if(app)
+            {
+                console.log('find one coord in will update '+  app.email ) ;
             }
+
+            disableDefaultUI = false ;
+            */
+        }
+     
+        renderMap()
+        {
+            const first = this.props.applications[0] ;
+            const all = this.props.applications ;
+            const center = {
+                lat: first.loc.coordinates[0],
+                lng: first.loc.coordinates[1],
+
+            };
+            
+            return <Gmaps
+                width={'100%'}
+                height={'600px'}
+                lat={center.lat}
+                lng={center.lng}
+                zoom={12}
+                loadingMessage={'loading ...'}
+                params={{v: '3.exp', key: 'AIzaSyCjHh_IEOf-QAJs5kSfA5yxV2mijmZ56m8'}}
+                onMapCreated={this.onMapCreated} >
+                {
+                    all.map((app) =>
+                        <Marker key={app._id}
+                                lat={app.loc.coordinates[0]}
+                                lng={app.loc.coordinates[1]}
+                                draggable={false}
+                        />
+                    )
+                }
+                
+            </Gmaps>
         }
 
          render() {
-             var theMap ;
-             if (this.state.loaded)
-                 theMap = <GoogleMap name="applicantsmap" options={this.state.mapOptions} />;
-             else 
-                 theMap = <div>Loading map...</div>;
 
-             
 
              const navbar = (
                  <nav  className="navbar navbar-default navbar-fixed-top navbar-custom">
@@ -103,13 +133,15 @@ import {Profiles} from '../collections/profile.js' ;
                          </div>
                          <div className="row">
                              <div className="col-sm-12">
-                                 {theMap}
+                                 {this.props.loading ? <Loading/> : this.renderMap()}
                              </div>
                              
                          </div>
                      </div>    
                  </div>    
              );
+
+
              
              
          }
@@ -123,4 +155,16 @@ import {Profiles} from '../collections/profile.js' ;
 
 }
 
+ApplicantsMap.propTypes = {
+    
+    applications:   PropTypes.array.isRequired,
+    loading:   PropTypes.bool.isRequired,
+    
+} ;
 
+export default createContainer(() => {
+    const  subscription = Meteor.subscribe('applications');
+    const loading = !subscription.ready() ;
+    const applications = Applications.find({}).fetch();
+    return {loading, applications};
+}, ApplicantsMap) ;
